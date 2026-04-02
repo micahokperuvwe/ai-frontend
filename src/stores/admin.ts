@@ -24,8 +24,9 @@ export const useAdminStore = defineStore('admin', {
         async fetchStats() {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/admin/stats', {
-                    headers: { Authorization: `Bearer ${token}` }
+                const res = await axios.get(// 'http://localhost:5000/api/admin/stats',
+                   'https://ai-backend-90ak.onrender.com/api/admin/stats', 
+                 {   headers: { Authorization: `Bearer ${token}` }
                 });
                 this.stats = res.data;
             } catch (err: any) {
@@ -35,7 +36,8 @@ export const useAdminStore = defineStore('admin', {
         async fetchUsers() {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/admin/users', {
+                const res = await axios.get(// 'http://localhost:5000/api/admin/users',
+                     'https://ai-backend-90ak.onrender.com/api/admin/users',{
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 this.users = res.data;
@@ -46,7 +48,8 @@ export const useAdminStore = defineStore('admin', {
         async fetchMemories() {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/admin/memory', {
+                const res = await axios.get(//'http://localhost:5000/api/admin/memory',
+                    'https://ai-backend-90ak.onrender.com/api/admin/memory ',{
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 this.memories = res.data;
@@ -57,7 +60,8 @@ export const useAdminStore = defineStore('admin', {
         async addMemory(prompt: string, response: string) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.post('http://localhost:5000/api/admin/memory', { prompt, response }, {
+                await axios.post(//'http://localhost:5000/api/admin/memory',
+                    'https://ai-backend-90ak.onrender.com/api/admin/memory', { prompt, response }, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 await this.fetchMemories(); // Refresh
@@ -70,7 +74,8 @@ export const useAdminStore = defineStore('admin', {
         async deleteMemory(id: string) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:5000/api/admin/memory/${id}`, {
+                await axios.delete(//`http://localhost:5000/api/admin/memory/${id}`,
+                    `https://ai-backend-90ak.onrender.com/api/admin/memory/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 await this.fetchMemories(); // Refresh
@@ -81,7 +86,8 @@ export const useAdminStore = defineStore('admin', {
         async updateUserExpiry(id: string, date: string) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.put(`http://localhost:5000/api/admin/users/${id}/expiry`, { date }, {
+                await axios.put(//`http://localhost:5000/api/admin/users/${id}/expiry`,
+                    `https://ai-backend-90ak.onrender.com/api/admin/users/${id}/expiry`, { date }, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 await this.fetchUsers(); // Refresh list
@@ -94,7 +100,9 @@ export const useAdminStore = defineStore('admin', {
         async autoImportMemory(content: string, count: number = 10) {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.post('http://localhost:5000/api/admin/memory/auto', { content, count }, {
+                const res = await axios.post(//'http://localhost:5000/api/admin/memory/auto',
+                     'https://ai-backend-90ak.onrender.com/api/admin/memory/auto',
+                     { content, count }, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 await this.fetchMemories();

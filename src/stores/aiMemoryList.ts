@@ -13,7 +13,8 @@ export const useAIMemoryListStore = defineStore('aiMemoryList', {
       this.error = null;
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/ai/memories', {
+        const res = await axios.get(//'http://localhost:5000/api/ai/memories',
+           'https://ai-backend-90ak.onrender.com/api/ai/memories',{
           headers: { Authorization: `Bearer ${token}` }
         });
         this.memories = res.data;

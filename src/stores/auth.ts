@@ -13,7 +13,8 @@ export const useAuthStore = defineStore('auth', {
             this.loading = true;
             this.error = null;
             try {
-                const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+                const response = await axios.post(//'http://localhost:5000/api/auth/login',
+                     'https://ai-backend-90ak.onrender.com/api/auth/login', { email, password });
                 this.token = response.data.token;
                 this.user = response.data.user;
                 localStorage.setItem('token', this.token || '');
@@ -29,7 +30,8 @@ export const useAuthStore = defineStore('auth', {
             this.loading = true;
             this.error = null;
             try {
-                await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+                await axios.post(//'http://localhost:5000/api/auth/register',
+                    'https://ai-backend-90ak.onrender.com/api/auth/register', { name, email, password });
                 return true;
             } catch (err: any) {
                 this.error = err.response?.data?.msg || 'Registration failed';

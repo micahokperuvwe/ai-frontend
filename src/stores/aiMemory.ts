@@ -33,7 +33,8 @@ export const useAIMemoryStore = defineStore('aiMemory', {
       try {
         const authToken = localStorage.getItem('token');
         const response = await axios.post(
-          'http://localhost:5000/api/ai/generate',
+         // 'http://localhost:5000/api/ai/generate',
+           'https://ai-backend-90ak.onrender.com/api/ai/generate',
           { topic, type: 'flashcards' },
           { headers: { Authorization: `Bearer ${authToken}` } }
         );
